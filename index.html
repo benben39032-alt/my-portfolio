@@ -6,667 +6,480 @@
 <title>Portfolio — ชณกฤดิ ช่วงธัญวัฒน์ (เบน)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@400;600;700&family=Sarabun:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --void:#0A1128;
-    --panel:#101F42;
-    --panel-raised:#1C3166;
-    --line:rgba(0,212,255,0.08);
-    --line-strong:rgba(0,212,255,0.18);
-    --text:#F0F4F8;
-    --muted:#94A3B8;
-    --muted-dim:#64748B;
-    --green:#00D4FF; /* เปลี่ยนเป็นสีฟ้าสว่าง Cyan */
-    --green-dim:rgba(0,212,255,0.12);
-    --amber:#38BDF8; /* สีฟ้า Sky Blue แทนสีส้ม */
-    --amber-dim:rgba(56,189,248,0.12);
-    --mono:'JetBrains Mono', ui-monospace, monospace;
-    --sans:'Sarabun', system-ui, sans-serif;
-    --rail-w:240px;
+  :root {
+    --canvas: #1c2530;      /* พื้นหลังนอกกระดาษ เข้มนุ่มตา ไม่จัดจ้าน */
+    --paper: #faf8f3;       /* กระดาษเอกสารทางการ */
+    --paper-soft: #f2efe7;  /* พื้นรองบนกระดาษ */
+    --ink: #22262b;         /* ตัวอักษรหลัก อ่านสบาย */
+    --muted: #6b7178;       /* ตัวอักษรรอง */
+    --rule: #ddd6c4;        /* เส้นแบ่งบนกระดาษ */
+    --accent: #1d5c4a;      /* เขียวทางการ คล้ายตราประทับ */
+    --accent-soft: #e3ece8; /* พื้นอ่อนของสีเน้น */
+    --serif: 'Noto Serif Thai', serif;
+    --sans: 'Sarabun', system-ui, sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
   }
 
-  *{box-sizing:border-box; margin:0; padding:0;}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
 
-  html{scroll-behavior:smooth;}
-  @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto;}
-    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
-  }
-
-  body{
-    background:var(--void);
-    color:var(--text);
-    font-family:var(--sans);
-    line-height:1.7;
-    -webkit-font-smoothing:antialiased;
+  body {
+    background: var(--canvas);
     background-image:
-      radial-gradient(circle at 80% 10%, rgba(0,212,255,0.08), transparent 50%),
-      radial-gradient(circle at 10% 80%, rgba(56,189,248,0.05), transparent 40%),
-      linear-gradient(var(--line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line) 1px, transparent 1px);
-    background-size:auto, auto, 48px 48px, 48px 48px;
-    background-position:0 0, 0 0, -1px -1px, -1px -1px;
-    background-attachment:fixed;
-  }
-  main{position:relative;}
-  main::before{
-    content:'';
-    position:absolute;
-    inset:0;
-    background:
-      radial-gradient(600px 400px at 85% 0%, rgba(0,212,255,0.04), transparent),
-      linear-gradient(180deg, var(--void) 0%, transparent 8%, transparent 92%, var(--void) 100%);
-    pointer-events:none;
-    z-index:0;
-  }
-  main .wrap, footer{position:relative; z-index:1;}
-
-  /* ---------- reveal-on-scroll ---------- */
-  .reveal{
-    opacity:0;
-    transform:translateY(15px);
-    transition:opacity .5s ease, transform .5s ease;
-  }
-  .reveal.visible{opacity:1; transform:translateY(0);}
-
-  a{color:inherit; text-decoration:none;}
-
-  ::selection{background:var(--green); color:var(--void);}
-
-  a:focus-visible, button:focus-visible{
-    outline:2px solid var(--green);
-    outline-offset:3px;
-    border-radius:4px;
+      radial-gradient(circle at 15% 10%, rgba(255,255,255,0.03), transparent 40%),
+      radial-gradient(circle at 85% 90%, rgba(255,255,255,0.03), transparent 40%);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    padding: 48px 20px 80px;
   }
 
-  /* ---------- layout shell ---------- */
-  .shell{
-    display:grid;
-    grid-template-columns: var(--rail-w) 1fr;
-    min-height:100vh;
+  a { color: inherit; text-decoration: none; }
+
+  /* ---------- document shell ---------- */
+  .document {
+    max-width: 780px;
+    margin: 0 auto;
+    background: var(--paper);
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+    position: relative;
   }
 
-  /* ---------- side rail nav ---------- */
-  .rail{
-    position:sticky;
-    top:0;
-    height:100vh;
-    border-right:1px solid var(--line);
-    padding:32px 0 24px;
-    display:flex;
-    flex-direction:column;
-    background:linear-gradient(180deg, #0D1B3E, var(--void));
-  }
-  .rail-brand{
-    font-family:var(--mono);
-    font-size:13px;
-    letter-spacing:0.05em;
-    color:var(--text);
-    padding:0 28px 24px;
-    border-bottom:1px solid var(--line);
-    margin-bottom:24px;
-  }
-  .rail-brand b{color:var(--green); font-weight:700;}
-  .rail-nav{list-style:none; display:flex; flex-direction:column; gap:4px; flex:1;}
-  .rail-nav a{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:11px 28px;
-    font-family:var(--mono);
-    font-size:12.5px;
-    letter-spacing:0.05em;
-    color:var(--muted);
-    transition:color .2s ease, background .2s ease;
-    border-right:3px solid transparent;
-  }
-  .rail-nav a .dot{
-    width:5px; height:5px; border-radius:50%;
-    background:var(--muted-dim);
-    transition:background .2s ease, box-shadow .2s ease;
-  }
-  .rail-nav a:hover, .rail-nav a.active{
-    color:var(--green);
-    background:rgba(0,212,255,0.04);
-    border-right-color:var(--green);
-  }
-  .rail-nav a.active .dot{
-    background:var(--green);
-    box-shadow:0 0 8px var(--green);
-  }
-  .rail-foot{
-    padding:16px 28px 0;
-    border-top:1px solid var(--line);
-    margin-top:14px;
-    font-family:var(--mono);
-    font-size:11px;
-    color:var(--muted-dim);
+  /* มุมพับกระดาษ — ลายเซ็นของงานออกแบบนี้ */
+  .document::before {
+    content: "";
+    position: absolute;
+    top: 0; right: 0;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 0 46px 46px 0;
+    border-color: transparent var(--canvas) transparent transparent;
+    filter: drop-shadow(-2px 2px 3px rgba(0,0,0,0.15));
   }
 
-  /* ---------- mobile top nav ---------- */
-  .topnav{display:none;}
-
-  /* ---------- main ---------- */
-  main{min-width:0;}
-  .wrap{max-width:800px; margin:0 auto; padding:0 40px;}
-
-  /* ---------- hero ---------- */
-  .hero{
-    padding:80px 0 60px;
-    border-bottom:1px solid var(--line);
+  /* ---------- table of contents strip ---------- */
+  .toc {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    background: var(--ink);
+    padding: 0 4px;
   }
-  .terminal{
-    font-family:var(--mono);
-    font-size:13px;
-    color:var(--green);
-    background:var(--panel);
-    border:1px solid var(--line-strong);
-    border-radius:20px;
-    padding:8px 16px;
-    margin-bottom:32px;
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
+  .toc a {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+    color: rgba(250,248,243,0.55);
+    padding: 12px 16px;
+    transition: color 0.2s ease, background 0.2s ease;
   }
-  .cursor{
-    display:inline-block;
-    width:6px; height:12px;
-    background:var(--green);
-    animation:blink 1s steps(1) infinite;
-    vertical-align:middle;
-  }
-  @keyframes blink{50%{opacity:0;}}
-
-  .hero h1{
-    font-weight:700;
-    font-size:clamp(32px, 5vw, 44px);
-    letter-spacing:-0.02em;
-    margin-bottom:8px;
-    background:linear-gradient(120deg, #FFFFFF 30%, var(--green) 90%);
-    -webkit-background-clip:text;
-    background-clip:text;
-    -webkit-text-fill-color:transparent;
-  }
-  .hero .nickname{
-    color:var(--amber);
-    -webkit-text-fill-color:var(--amber);
-  }
-  .hero-top{
-    display:flex;
-    align-items:center;
-    gap:36px;
-    flex-wrap:wrap;
-  }
-  
-  /* ปรับรูปกรอบภาพใหม่ให้ดึงดูดสายตา */
-  .photo-frame{
-    position:relative;
-    width:140px;
-    height:140px;
-    flex-shrink:0;
-    border-radius:50% 20% 50% 50%; /* ทรงโค้งไดนามิกสะดุดตา */
-    overflow:hidden;
-    background:linear-gradient(45deg, var(--panel), var(--panel-raised));
-    border:3px solid var(--green);
-    box-shadow:0 0 20px rgba(0,212,255,0.15);
-  }
-  .photo-frame img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-  }
-  .hero-id{min-width:0;}
-  .role{display:flex; gap:12px; flex-wrap:wrap; margin-top:6px;}
-  .role span{
-    font-size:13px;
-    background:var(--green-dim);
-    color:var(--green);
-    padding:2px 10px;
-    border-radius:20px;
-    font-weight:500;
+  .toc a:hover, .toc a.active {
+    color: var(--paper);
+    background: rgba(255,255,255,0.06);
   }
 
-  .cta-row{
-    margin-top:32px;
-    display:flex;
-    flex-wrap:wrap;
-    gap:16px;
+  .inner { padding: 0 56px; }
+
+  /* ---------- letterhead ---------- */
+  .letterhead {
+    padding: 52px 0 32px;
+    border-bottom: 3px double var(--rule);
+    display: flex;
+    align-items: center;
+    gap: 28px;
   }
-  .btn{
-    font-family:var(--mono);
-    font-size:13px;
-    font-weight:600;
-    padding:12px 24px;
-    border-radius:10px;
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    transition:all .2s ease;
+  .photo-frame {
+    width: 104px;
+    height: 104px;
+    flex-shrink: 0;
+    border: 1px solid var(--rule);
+    padding: 4px;
+    background: var(--paper);
   }
-  .btn-primary{
-    background:var(--green);
-    color:var(--void);
-    box-shadow:0 8px 20px rgba(0,212,255,0.25);
+  .photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
-  .btn-primary:hover{
-    transform:translateY(-2px);
-    box-shadow:0 12px 24px rgba(0,212,255,0.4);
+  .letterhead h1 {
+    font-family: var(--serif);
+    font-size: 27px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
   }
-  .btn-ghost{
-    border:1px solid var(--line-strong);
-    color:var(--text);
-    background:transparent;
+  .letterhead h1 .nick {
+    font-family: var(--sans);
+    font-weight: 300;
+    color: var(--muted);
+    font-size: 20px;
   }
-  .btn-ghost:hover{
-    background:rgba(255,255,255,0.03);
-    border-color:var(--green);
-    transform:translateY(-2px);
+  .role-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--accent);
   }
-  .hero p.tagline{
-    margin-top:24px;
-    max-width:54ch;
-    color:var(--muted);
-    font-size:16px;
+  .role-line .seal {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+  }
+  .role-line .sep { color: var(--rule); }
+
+  .tagline {
+    margin-top: 16px;
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 54ch;
   }
 
-  /* ---------- section scaffolding ---------- */
-  section{
-    padding:60px 0;
-    border-bottom:1px solid var(--line);
+  .cta-row {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
   }
-  section:last-of-type{border-bottom:none;}
+  .btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    padding: 10px 18px;
+    border: 1px solid var(--ink);
+  }
+  .btn-primary { background: var(--ink); color: var(--paper); }
+  .btn-primary:hover { background: var(--accent); border-color: var(--accent); }
+  .btn-ghost { color: var(--ink); }
+  .btn-ghost:hover { background: var(--paper-soft); }
 
-  .eyebrow{
-    font-family:var(--mono);
-    font-size:12px;
-    letter-spacing:0.1em;
-    color:var(--green);
-    display:flex;
-    align-items:center;
-    gap:8px;
-    margin-bottom:12px;
+  /* ---------- sections ---------- */
+  section {
+    padding: 40px 0;
+    border-bottom: 1px solid var(--rule);
   }
-  h2.title{
-    font-size:24px;
-    font-weight:700;
-    margin-bottom:24px;
-  }
+  section:last-of-type { border-bottom: none; }
 
-  /* ---------- profile panel (key/value) ---------- */
-  .kv-panel{
-    background:var(--panel);
-    border:1px solid var(--line);
-    border-radius:12px;
-    overflow:hidden;
-    box-shadow:0 4px 20px rgba(0,0,0,0.15);
+  .sec-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 10px;
   }
-  .kv-row{
-    display:grid;
-    grid-template-columns:160px 1fr;
-    padding:14px 24px;
-    font-size:15px;
-    border-bottom:1px solid var(--line);
-  }
-  .kv-row:last-child{border-bottom:none;}
-  .kv-row .k{
-    font-family:var(--mono);
-    font-size:12px;
-    color:var(--muted);
-  }
-  .kv-row .v{color:var(--text); font-weight:500;}
-
-  /* ---------- goal quote ---------- */
-  .goal-block{
-    padding:24px;
-    background:linear-gradient(90deg, var(--panel), transparent);
-    border-left:4px solid var(--green);
-    border-radius:4px;
-    font-size:16px;
-    color:var(--text);
+  h2.title {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 22px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--rule);
   }
 
-  /* ---------- chip groups ---------- */
-  .chip-group{margin-bottom:24px;}
-  .chip-group h3{
-    font-family:var(--sans);
-    font-size:14px;
-    color:var(--muted);
-    margin-bottom:12px;
+  /* ---------- profile ---------- */
+  .profile-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--rule);
   }
-  .chips{display:flex; flex-wrap:wrap; gap:10px;}
-  .chip{
-    font-size:14px;
-    padding:8px 16px;
-    border-radius:8px;
-    background:var(--panel);
-    border:1px solid var(--line);
-    color:var(--text);
-    transition:all .2s ease;
+  .profile-item {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    font-size: 14.5px;
+    padding: 12px 16px;
   }
-  .chip.on{
-    border-color:var(--green);
-    color:var(--green);
-    background:var(--green-dim);
+  .profile-item:not(:last-child) { border-bottom: 1px solid var(--rule); }
+  .profile-item .label {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--muted);
+    text-transform: uppercase;
+    padding-top: 1px;
   }
-  .chip:hover{
-    transform:translateY(-2px);
-    border-color:var(--green);
-    box-shadow:0 6px 15px rgba(0,212,255,0.15);
+  .profile-item .value { color: var(--ink); font-weight: 500; }
+
+  /* ---------- goal / quote ---------- */
+  .target-text {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--ink);
+    background: var(--paper-soft);
+    border-left: 3px solid var(--accent);
+    padding: 18px 22px;
   }
+
+  /* ---------- chips ---------- */
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    padding: 7px 14px;
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    color: var(--ink);
+  }
+  .chip.is-main { background: var(--ink); color: var(--paper); }
 
   /* ---------- project ---------- */
-  .project-panel{
-    background:var(--panel);
-    border:1px solid var(--line);
-    border-radius:16px;
-    padding:32px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+  .project-panel { display: flex; flex-direction: column; gap: 26px; }
+  .project-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--paper);
+    background: var(--accent);
+    display: inline-block;
+    padding: 4px 10px;
   }
-  .project-panel h3.sub{
-    font-size:18px;
-    font-weight:600;
-    margin:28px 0 12px;
-    color:var(--green);
+  .project-panel h3.sub {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 8px;
   }
-  .project-panel p{color:var(--text); font-size:15.5px;}
-  .project-panel ul{list-style:none; margin-top:12px; display:flex; flex-direction:column; gap:10px;}
-  .project-panel li{
-    padding:14px;
-    background:rgba(255,255,255,0.02);
-    border:1px solid var(--line);
-    border-radius:8px;
-    font-size:15px;
-    color:var(--text);
-  }
-  .project-panel li strong{color:var(--green); font-weight:600;}
+  .project-panel p { color: var(--muted); font-size: 15px; }
 
-  /* schematic diagram */
-  .schematic{
-    margin:24px 0;
-    background:#070D1E;
-    border:1px solid var(--line-strong);
-    border-radius:12px;
-    padding:20px;
+  .schematic {
+    background: var(--paper-soft);
+    border: 1px solid var(--rule);
+    padding: 22px;
   }
-  .schematic svg{width:100%; height:auto; display:block;}
-  .schematic-cap{
-    font-family:var(--mono);
-    font-size:11px;
-    color:var(--muted);
-    text-align:center;
-    padding-top:12px;
+  .schematic svg { width: 100%; height: auto; display: block; }
+  .schematic-cap {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 12px;
   }
 
-  .role-tag{
-    display:inline-flex;
-    align-items:center;
-    font-family:var(--mono);
-    font-size:12px;
-    color:var(--void);
-    background:var(--green);
-    padding:6px 14px;
-    border-radius:30px;
-    margin-bottom:20px;
-    font-weight:700;
-    box-shadow:0 4px 10px rgba(0,212,255,0.2);
+  .project-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .project-list li { font-size: 14.5px; color: var(--muted); padding-left: 18px; position: relative; }
+  .project-list li::before {
+    content: "";
+    position: absolute; left: 0; top: 7px;
+    width: 7px; height: 7px;
+    background: var(--accent);
   }
+  .project-list li strong { color: var(--ink); font-weight: 600; }
 
   /* ---------- contact ---------- */
-  .contact-list{display:flex; flex-direction:column; gap:10px;}
-  .contact-row{
-    display:flex;
-    align-items:center;
-    gap:16px;
-    padding:16px 24px;
-    background:var(--panel);
-    border:1px solid var(--line);
-    border-radius:10px;
-    font-size:15px;
-    color:var(--text);
-    transition:all .2s ease;
+  .contact-list { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--ink); }
+  .contact-item {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    padding: 14px 18px;
+    font-size: 14.5px;
+    transition: background 0.2s ease;
   }
-  .contact-row:hover{
-    border-color:var(--green); 
-    background:var(--green-dim);
-    transform:translateX(4px);
+  .contact-item:not(:last-child) { border-bottom: 1px solid var(--rule); }
+  .contact-item:hover { background: var(--paper-soft); }
+  .contact-item .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    min-width: 70px;
+    text-transform: uppercase;
   }
-  .contact-row .prompt{
-    color:var(--green);
-    font-family:var(--mono);
-    font-weight:700;
-  }
-  .contact-row .label{
-    font-family:var(--mono);
-    color:var(--muted);
-    font-size:12px;
-    text-transform:uppercase;
-    min-width:80px;
-  }
+  .contact-item .value { color: var(--ink); font-weight: 500; }
 
-  footer{
-    padding:40px;
-    text-align:center;
-    font-family:var(--mono);
-    font-size:11px;
-    color:var(--muted-dim);
-    border-top:1px solid var(--line);
-    margin-top:40px;
+  footer {
+    padding: 30px 0 40px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  footer .line {
+    width: 60px; height: 1px; background: var(--rule);
+    margin: 0 auto 14px;
   }
 
   /* ---------- responsive ---------- */
-  @media (max-width:900px){
-    .shell{grid-template-columns:1fr;}
-    .rail{display:none;}
-    .topnav{
-      display:block;
-      position:sticky; top:0; z-index:10;
-      background:rgba(10,17,40,0.95);
-      backdrop-filter:blur(12px);
-      border-bottom:1px solid var(--line);
-      overflow-x:auto;
-      padding:16px;
-    }
-    .topnav a{
-      font-family:var(--mono);
-      font-size:12px;
-      color:var(--muted);
-      margin-right:24px;
-    }
-    .topnav a.active{color:var(--green); font-weight:600;}
-    .wrap{padding:0 24px;}
-    .hero{padding:48px 0;}
-    .kv-row{grid-template-columns:120px 1fr; padding:12px 16px;}
-    .project-panel{padding:24px 20px;}
-    .photo-frame{width:120px; height:120px;}
+  @media (max-width: 640px) {
+    body { padding: 0; }
+    .document { box-shadow: none; border: none; }
+    .inner { padding: 0 24px; }
+    .letterhead { flex-direction: column; align-items: flex-start; padding-top: 36px; }
+    .toc { overflow-x: auto; }
+    .toc a { padding: 12px 12px; white-space: nowrap; }
   }
 </style>
 </head>
 <body>
 
-<nav class="topnav" id="topnav" aria-label="ลัดไปยังหมวดหมู่">
-  <a href="#profile">PROFILE</a>
-  <a href="#goal">GOAL</a>
-  <a href="#skills">SKILLS</a>
-  <a href="#stack">STACK</a>
-  <a href="#project">PROJECT</a>
-  <a href="#contact">CONTACT</a>
-</nav>
+<div class="document">
 
-<div class="shell">
+  <nav class="toc" id="toc" aria-label="สารบัญ">
+    <a href="#profile">ประวัติ</a>
+    <a href="#goal">เป้าหมาย</a>
+    <a href="#skills">โปรแกรม</a>
+    <a href="#stack">ภาษา</a>
+    <a href="#project">โครงงาน</a>
+    <a href="#contact">ติดต่อ</a>
+  </nav>
 
-  <aside class="rail">
-    <div class="rail-brand"><b>&gt;</b> ben.dev/portfolio</div>
-    <ul class="rail-nav" id="railnav">
-      <li><a href="#profile"><span class="dot"></span>PROFILE</a></li>
-      <li><a href="#goal"><span class="dot"></span>GOAL</a></li>
-      <li><a href="#skills"><span class="dot"></span>SKILLS</a></li>
-      <li><a href="#stack"><span class="dot"></span>STACK</a></li>
-      <li><a href="#project"><span class="dot"></span>PROJECT</a></li>
-      <li><a href="#contact"><span class="dot"></span>CONTACT</a></li>
-    </ul>
-    <div class="rail-foot">STATUS: <span style="color:var(--green)">ONLINE</span></div>
-  </aside>
+  <div class="inner">
 
-  <main>
-    <div class="wrap">
-
-      <section class="hero">
-        <div class="terminal">
-          <span>⚡ chanakridi_portfolio</span><span class="cursor" aria-hidden="true"></span>
+    <header class="letterhead">
+      <div class="photo-frame">
+        <img src="image_b9d33f.png" alt="ชณกฤดิ ช่วงธัญวัฒน์">
+      </div>
+      <div>
+        <h1>ชณกฤดิ ช่วงธัญวัฒน์ <span class="nick">(เบน)</span></h1>
+        <div class="role-line">
+          <span class="seal"></span>
+          <span>ปวช.3</span>
+          <span class="sep">·</span>
+          <span>สาขาเทคโนโลยีสารสนเทศ (IT)</span>
         </div>
-
-        <div class="hero-top">
-          <div class="photo-frame">
-            <img src="image_b9d33f.png" alt="รูปโปรไฟล์ของชณกฤดิ ช่วงธัญวัฒน์ (เบน)">
-          </div>
-          <div class="hero-id">
-            <h1>ชณกฤดิ ช่วงธัญวัฒน์ <span class="nickname">(เบน)</span></h1>
-            <div class="role">
-              <span>ปวช.3</span>
-              <span>สาขาเทคโนโลยีสารสนเทศ (IT)</span>
-            </div>
-          </div>
-        </div>
-
         <p class="tagline">มุ่งมั่นพัฒนาและจัดการระบบหลังบ้านที่โปร่งใส ตรวจสอบง่าย และมีประสิทธิภาพ</p>
-
         <div class="cta-row">
-          <a class="btn btn-primary" href="#contact">📬 ติดต่อฉัน</a>
-          <a class="btn btn-ghost" href="mailto:benben39032@gmail.com">✉️ ส่งอีเมลตรง</a>
+          <a class="btn btn-primary" href="#contact">ติดต่อฉัน</a>
+          <a class="btn btn-ghost" href="mailto:benben39032@gmail.com">ส่งอีเมล</a>
         </div>
-      </section>
+      </div>
+    </header>
 
-      <section id="profile" class="reveal">
-        <div class="eyebrow">// 01 . profile</div>
-        <h2 class="title">📋 ข้อมูลส่วนตัว</h2>
-        <div class="kv-panel">
-          <div class="kv-row"><div class="k">NAME</div><div class="v">นายชณกฤดิ ช่วงธัญวัฒน์</div></div>
-          <div class="kv-row"><div class="k">NICKNAME</div><div class="v">เบน</div></div>
-          <div class="kv-row"><div class="k">LEVEL</div><div class="v">ปวช.3</div></div>
-          <div class="kv-row"><div class="k">MAJOR</div><div class="v">เทคโนโลยีสารสนเทศ (IT)</div></div>
-        </div>
-      </section>
+    <section id="profile">
+      <div class="sec-label">ข้อมูลส่วนตัว</div>
+      <h2 class="title">ประวัติส่วนตัว</h2>
+      <div class="profile-grid">
+        <div class="profile-item"><div class="label">Name</div><div class="value">นายชณกฤดิ ช่วงธัญวัฒน์</div></div>
+        <div class="profile-item"><div class="label">Nickname</div><div class="value">เบน</div></div>
+        <div class="profile-item"><div class="label">Level</div><div class="value">ปวช.3</div></div>
+        <div class="profile-item"><div class="label">Major</div><div class="value">เทคโนโลยีสารสนเทศ (IT)</div></div>
+      </div>
+    </section>
 
-      <section id="goal" class="reveal">
-        <div class="eyebrow">// 02 . target</div>
-        <h2 class="title">🎯 เป้าหมายหลังเรียนจบ</h2>
-        <div class="goal-block">
-          เรียนจบเพื่ออนาคตและสาวๆ ที่กำลังรอเบนอยู่ครับ
-        </div>
-      </section>
+    <section id="goal">
+      <div class="sec-label">เป้าหมาย</div>
+      <h2 class="title">เป้าหมายหลังเรียนจบ</h2>
+      <div class="target-text">
+        เรียนจบเพื่ออนาคตและสาวๆ ที่กำลังรอเบนอยู่ครับ
+      </div>
+    </section>
 
-      <section id="skills" class="reveal">
-        <div class="eyebrow">// 03 . expertise</div>
-        <h2 class="title">🛠️ ความสามารถ &amp; โปรแกรม</h2>
-        <div class="chip-group">
-          <div class="chips">
-            <span class="chip on">VS Code (โปรแกรมหลัก)</span>
-            <span class="chip on">Web Browser Tools</span>
-          </div>
-        </div>
-      </section>
+    <section id="skills">
+      <div class="sec-label">เครื่องมือ</div>
+      <h2 class="title">โปรแกรมที่ใช้งานเป็น</h2>
+      <div class="chips">
+        <span class="chip is-main">VS Code (โปรแกรมหลัก)</span>
+        <span class="chip">Web Browser Tools</span>
+      </div>
+    </section>
 
-      <section id="stack" class="reveal">
-        <div class="eyebrow">// 04 . technology</div>
-        <h2 class="title">🌐 ทักษะภาษาคอมพิวเตอร์</h2>
-        <div class="chip-group">
-          <div class="chips">
-            <span class="chip on">PHP (ภาษาหลัก)</span>
-            <span class="chip on">SQL (Database)</span>
-            <span class="chip on">HTML</span>
-            <span class="chip on">CSS</span>
-          </div>
-        </div>
-      </section>
+    <section id="stack">
+      <div class="sec-label">ทักษะ</div>
+      <h2 class="title">ทักษะภาษาคอมพิวเตอร์</h2>
+      <div class="chips">
+        <span class="chip is-main">PHP (ภาษาหลัก)</span>
+        <span class="chip">SQL (Database)</span>
+        <span class="chip">HTML</span>
+        <span class="chip">CSS</span>
+      </div>
+    </section>
 
-      <section id="project" class="reveal">
-        <div class="eyebrow">// 05 . final project</div>
-        <h2 class="title">🚀 เว็บไซต์หมู่บ้านเจซีการ์เดนวิลล์</h2>
+    <section id="project">
+      <div class="sec-label">ผลงาน</div>
+      <h2 class="title">เว็บไซต์หมู่บ้านเจซีการ์เดนวิลล์</h2>
 
-        <div class="project-panel">
-          <span class="role-tag">DEVELOPER &amp; DATABASE</span>
-
-          <h3 class="sub">📌 ข้อมูลระบบ</h3>
+      <div class="project-panel">
+        <div>
+          <span class="project-meta">ROLE: DEVELOPER &amp; DATABASE</span>
+          <h3 class="sub" style="margin-top: 12px;">ข้อมูลระบบ</h3>
           <p>เว็บไซต์ระบบบริหารจัดการส่วนกลางหมู่บ้าน เจซีการ์เดนวิลล์ (JC Garden Ville) ที่ช่วยให้กรรมการหมู่บ้านและนิติบุคคลสามารถจัดการข้อมูล ตรวจสอบรายละเอียดการแจ้งเรื่อง การเงิน และระบบส่วนกลางต่างๆ ได้อย่างสะดวก โปร่งใส และรวดเร็วในระบบเดียว</p>
+        </div>
 
-          <div class="schematic" aria-hidden="false">
-            <svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="แผนผังระบบหมู่บ้านเจซีการ์เดนวิลล์">
-              <defs>
-                <marker id="dot" markerWidth="6" markerHeight="6" refX="3" refY="3">
-                  <circle cx="3" cy="3" r="2" fill="#00D4FF"/>
-                </marker>
-              </defs>
-              <line x1="320" y1="110" x2="140" y2="40" stroke="#00D4FF" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.7"/>
-              <line x1="320" y1="110" x2="500" y2="40" stroke="#00D4FF" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.7"/>
-              <line x1="320" y1="110" x2="140" y2="180" stroke="#38BDF8" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.7"/>
-              <line x1="320" y1="110" x2="500" y2="180" stroke="#38BDF8" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.7"/>
+        <div class="schematic">
+          <svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="แผนผังระบบหมู่บ้าน">
+            <line x1="320" y1="110" x2="140" y2="40" stroke="#ddd6c4" stroke-width="1" stroke-dasharray="4 4"/>
+            <line x1="320" y1="110" x2="500" y2="40" stroke="#ddd6c4" stroke-width="1" stroke-dasharray="4 4"/>
+            <line x1="320" y1="110" x2="140" y2="180" stroke="#ddd6c4" stroke-width="1" stroke-dasharray="4 4"/>
+            <line x1="320" y1="110" x2="500" y2="180" stroke="#ddd6c4" stroke-width="1" stroke-dasharray="4 4"/>
 
-              <rect x="255" y="86" width="130" height="48" rx="8" fill="#101F42" stroke="#00D4FF" stroke-width="1.4"/>
-              <text x="320" y="107" text-anchor="middle" fill="#F0F4F8" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="600">JC GARDEN</text>
-              <text x="320" y="121" text-anchor="middle" fill="#00D4FF" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="600">VILLE SYSTEM</text>
+            <rect x="255" y="86" width="130" height="48" fill="#1d5c4a" stroke="#1d5c4a" stroke-width="1"/>
+            <text x="320" y="107" text-anchor="middle" fill="#faf8f3" font-family="IBM Plex Mono, monospace" font-size="10.5" font-weight="600">JC GARDEN</text>
+            <text x="320" y="121" text-anchor="middle" fill="#faf8f3" font-family="IBM Plex Mono, monospace" font-size="10.5" font-weight="600">VILLE SYSTEM</text>
 
-              <rect x="70" y="16" width="140" height="46" rx="7" fill="#0A1128" stroke="#1C3166"/>
-              <text x="140" y="35" text-anchor="middle" fill="#F0F4F8" font-family="JetBrains Mono, monospace" font-size="10">📷 AI CAMERA</text>
-              <text x="140" y="50" text-anchor="middle" fill="#94A3B8" font-family="JetBrains Mono, monospace" font-size="8.5">real-time alert</text>
+            <rect x="70" y="16" width="140" height="46" fill="#faf8f3" stroke="#22262b"/>
+            <text x="140" y="35" text-anchor="middle" fill="#22262b" font-family="Sarabun, sans-serif" font-size="11">📷 AI CAMERA</text>
+            <text x="140" y="48" text-anchor="middle" fill="#6b7178" font-family="Sarabun, sans-serif" font-size="9">real-time alert</text>
 
-              <rect x="430" y="16" width="140" height="46" rx="7" fill="#0A1128" stroke="#1C3166"/>
-              <text x="500" y="35" text-anchor="middle" fill="#F0F4F8" font-family="JetBrains Mono, monospace" font-size="10">🚧 GATE ACCESS</text>
-              <text x="500" y="50" text-anchor="middle" fill="#94A3B8" font-family="JetBrains Mono, monospace" font-size="8.5">แจ้งปัญหาอัตโนมัติ</text>
+            <rect x="430" y="16" width="140" height="46" fill="#faf8f3" stroke="#22262b"/>
+            <text x="500" y="35" text-anchor="middle" fill="#22262b" font-family="Sarabun, sans-serif" font-size="11">🚧 GATE ACCESS</text>
+            <text x="500" y="48" text-anchor="middle" fill="#6b7178" font-family="Sarabun, sans-serif" font-size="9">แจ้งปัญหาอัตโนมัติ</text>
 
-              <rect x="70" y="156" width="140" height="46" rx="7" fill="#0A1128" stroke="#1C3166"/>
-              <text x="140" y="175" text-anchor="middle" fill="#F0F4F8" font-family="JetBrains Mono, monospace" font-size="10">💳 ONLINE PAYMENT</text>
-              <text x="140" y="190" text-anchor="middle" fill="#94A3B8" font-family="JetBrains Mono, monospace" font-size="8.5">ค่าส่วนกลาง</text>
+            <rect x="70" y="156" width="140" height="46" fill="#faf8f3" stroke="#22262b"/>
+            <text x="140" y="175" text-anchor="middle" fill="#22262b" font-family="Sarabun, sans-serif" font-size="11">💳 ONLINE PAYMENT</text>
+            <text x="140" y="188" text-anchor="middle" fill="#6b7178" font-family="Sarabun, sans-serif" font-size="9">ค่าส่วนกลาง</text>
 
-              <rect x="430" y="156" width="140" height="46" rx="7" fill="#0A1128" stroke="#1C3166"/>
-              <text x="500" y="175" text-anchor="middle" fill="#F0F4F8" font-family="JetBrains Mono, monospace" font-size="10">📅 BOOKING</text>
-              <text x="500" y="190" text-anchor="middle" fill="#94A3B8" font-family="JetBrains Mono, monospace" font-size="8.5">ระบบจองสถานที่</text>
-            </svg>
-            <div class="schematic-cap">SYSTEM MAP — โครงสร้างหลักของเว็บไซต์หมู่บ้าน</div>
-          </div>
+            <rect x="430" y="156" width="140" height="46" fill="#faf8f3" stroke="#22262b"/>
+            <text x="500" y="175" text-anchor="middle" fill="#22262b" font-family="Sarabun, sans-serif" font-size="11">📅 BOOKING</text>
+            <text x="500" y="188" text-anchor="middle" fill="#6b7178" font-family="Sarabun, sans-serif" font-size="9">ระบบจองสถานที่</text>
+          </svg>
+          <div class="schematic-cap">โครงสร้างหลักของเว็บไซต์หมู่บ้าน</div>
+        </div>
 
-          <h3 class="sub">💡 เหตุผลที่เลือกทำโปรเจกต์นี้</h3>
-          <ul>
+        <div>
+          <h3 class="sub">เหตุผลที่เลือกทำโปรเจกต์นี้</h3>
+          <ul class="project-list">
             <li><strong>แก้ปัญหาความยุ่งยาก</strong> — เปลี่ยนระบบบริหารงานส่วนกลางของกรรมการหมู่บ้านแบบเดิม ให้มาทำงานบนระบบดิจิทัลที่รวบรวมข้อมูลไว้ในที่เดียว</li>
             <li><strong>เพิ่มความโปร่งใส</strong> — ทำให้การจัดการข้อมูล การตรวจสอบรายละเอียดต่างๆ ของหมู่บ้านทำได้ง่าย และมีประสิทธิภาพมากขึ้น</li>
           </ul>
+        </div>
 
-          <h3 class="sub">👨‍💻 หน้าที่หลักของฉันในกลุ่ม</h3>
+        <div>
+          <h3 class="sub">หน้าที่หลักของฉันในกลุ่ม</h3>
           <p>รับผิดชอบเขียนโค้ดพัฒนาระบบหลังบ้าน (Backend) ด้วยภาษา <strong>PHP</strong> และการจัดการระบบฐานข้อมูลผ่าน <strong>SQL</strong> บนโปรแกรม <strong>VS Code</strong></p>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="contact" class="reveal">
-        <div class="eyebrow">// 06 . contact</div>
-        <h2 class="title">📬 ช่องทางการติดต่อ</h2>
-        <div class="contact-list">
-          <a class="contact-row" href="mailto:benben39032@gmail.com">
-            <span class="prompt">#</span>
-            <span class="label">Email</span>
-            benben39032@gmail.com
-          </a>
-          <a class="contact-row" href="https://line.me/ti/p/~ben240604" target="_blank" rel="noopener noreferrer">
-            <span class="prompt">#</span>
-            <span class="label">Line ID</span>
-            ben240604
-          </a>
-        </div>
-      </section>
+    <section id="contact">
+      <div class="sec-label">ติดต่อ</div>
+      <h2 class="title">ช่องทางการติดต่อ</h2>
+      <div class="contact-list">
+        <a class="contact-item" href="mailto:benben39032@gmail.com">
+          <div class="label">Email</div>
+          <div class="value">benben39032@gmail.com</div>
+        </a>
+        <a class="contact-item" href="https://line.me/ti/p/~ben240604" target="_blank" rel="noopener noreferrer">
+          <div class="label">Line ID</div>
+          <div class="value">ben240604</div>
+        </a>
+      </div>
+    </section>
 
-    </div>
+    <footer>
+      <div class="line"></div>
+      © 2026 CHANAKRIDI CHUANGTHANYAWAT
+    </footer>
 
-    <footer>© 2026 · CHANAKRIDI CHUANGTHANYAWAT — DESIGNED FOR BLUE VISUALS</footer>
-  </main>
+  </div>
 </div>
 
 <script>
-  const sections = document.querySelectorAll('main section[id]');
-  const railLinks = document.querySelectorAll('#railnav a');
-  const topLinks = document.querySelectorAll('#topnav a');
+  const sections = document.querySelectorAll('section[id]');
+  const tocLinks = document.querySelectorAll('#toc a');
 
   const setActive = (id) => {
-    railLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
-    topLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+    tocLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
   };
 
   if ('IntersectionObserver' in window){
@@ -674,20 +487,8 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) setActive(entry.target.id);
       });
-    }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+    }, { rootMargin: '-35% 0px -55% 0px', threshold: 0 });
     sections.forEach(s => spyObserver.observe(s));
-
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting){
-          entry.target.classList.add('visible');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-  } else {
-    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
   }
 </script>
 
