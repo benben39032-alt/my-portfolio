@@ -4,99 +4,172 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - ชณกฤดิ ช่วงธัญวัฒน์</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Noto Sans Thai', sans-serif; }
-        body { bg-color: #f8fafc; background: #f8fafc; color: #334155; padding: 20px; line-height: 1.6; }
-        .container { max-w: 800px; max-width: 800px; margin: 0 auto; }
-        
-        /* Header */
-        header { background: linear-gradient(135deg, #2563eb, #4f46e5); color: white; padding: 30px; rounded-radius: 16px; border-radius: 16px; margin-bottom: 20px; text-align: center; }
-        .badge { background: #facc15; color: #1e293b; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; display: inline-block; margin-bottom: 10px; }
-        .goal { background: rgba(255,255,255,0.15); padding: 10px; border-radius: 8px; margin-top: 15px; font-size: 14px; }
-        
-        /* Layout Grid */
-        .grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-        @media (min-width: 768px) { .grid { grid-template-columns: 1fr 2fr; } }
-        
-        /* Cards */
-        section { background: white; padding: 20px; border-radius: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border: 1px solid #f1f5f9; }
-        h2 { font-size: 18px; margin-bottom: 15px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; color: #0f172a; }
-        h3 { font-size: 15px; color: #4f46e5; margin-bottom: 8px; }
-        
-        /* Lists & Tags */
-        ul { list-style: none; }
-        li { background: #f8fafc; padding: 8px; border-radius: 6px; margin-bottom: 8px; font-size: 14px; }
-        .tag { display: inline-block; background: #eff6ff; color: #1e40af; padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 600; margin: 2px; border: 1px solid #dbeafe; }
-        
-        /* Image Placeholder */
-        .img-box { background: #f1f5f9; border: 2px dashed #cbd5e1; height: 140px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 14px; margin-top: 10px; }
+        body {
+            font-family: 'Noto Sans Thai', sans-serif;
+        }
     </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 antialiased">
 
-<div class="container">
-    
-    <header>
-        <span class="badge">ปวช. 3 เทคโนโลยีสารสนเทศ</span>
-        <h1>นายชณกฤดิ ช่วงธัญวัฒน์ (เบน)</h1>
-        <div class="goal">🎯 <b>เป้าหมายหลังเรียนจบ:</b> เรียนจบเพื่ออนาคตและสาวๆ ที่กำลังรอเบนอยู่ครับ</div>
-    </header>
-
-    <div class="grid">
+    <div class="max-w-4xl mx-auto px-4 py-8">
         
-        <div style="display: flex; flex-direction: column; gap: 20px;">
-            <section>
-                <h2>⚡ ทักษะความสามารถ</h2>
-                <div style="margin-bottom: 15px;">
-                    <p style="font-size: 12px; color: #94a3b8; font-weight: bold;">💻 โปรแกรมที่ใช้เป็น</p>
-                    <ul>
-                        <li>✔ VS Code (โปรแกรมหลัก)</li>
-                        <li>✔ Web Browser Tools</li>
-                    </ul>
+        <header class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl shadow-xl overflow-hidden mb-8 text-white">
+            <div class="p-6 sm:p-10 flex flex-col md:flex-row items-center gap-6">
+                <div class="w-32 h-32 sm:w-40 sm:h-40 bg-slate-200/20 rounded-full border-4 border-white/50 flex items-center justify-center overflow-hidden flex-shrink-0 shadow-inner">
+                    <img src="https://via.placeholder.com/150" alt="รูปถ่ายของเบน" class="w-full h-full object-cover hidden">
+                    <span class="text-sm text-white/80 text-center px-2">📸 รูปถ่ายของฉัน</span>
                 </div>
-                <div>
-                    <p style="font-size: 12px; color: #94a3b8; font-weight: bold;">🗣️ ภาษาที่เคยเรียน</p>
-                    <span class="tag">PHP</span><span class="tag">HTML / CSS</span><span class="tag">SQL</span>
+                
+                <div class="text-center md:text-left flex-1">
+                    <span class="bg-yellow-400 text-slate-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">ปวช. 3 เทคโนโลยีสารสนเทศ</span>
+                    <h1 class="text-2xl sm:text-4xl font-bold mt-2">นายชณกฤดิ ช่วงธัญวัฒน์</h1>
+                    <p class="text-lg text-blue-100 mt-1">ชื่อเล่น: <span class="font-medium text-white">เบน</span></p>
+                    <div class="mt-4 bg-white/10 backdrop-blur-sm p-3 rounded-xl border border-white/10 inline-block max-w-full">
+                        <p class="text-sm sm:text-base">🎯 <span class="font-semibold text-yellow-300">เป้าหมายหลังเรียนจบ:</span> เรียนจบเพื่ออนาคตและสาวๆ ที่กำลังรอเบนอยู่ครับ</p>
+                    </div>
                 </div>
-            </section>
-
-            <section>
-                <h2>📞 ช่องทางการติดต่อ</h2>
-                <p style="font-size: 14px; margin-bottom: 5px;">📧 <b>Email:</b> benben39032@gmail.com</p>
-                <p style="font-size: 14px;">💬 <b>Line ID:</b> ben240604</p>
-            </section>
-        </div>
-        
-        <section>
-            <h2>📂 ข้อมูลโปรเจกต์จบ ปวช.3</h2>
-            <div style="margin-bottom: 15px;">
-                <h3>เว็บไซต์หมู่บ้านเจซีการ์เดนวิลล์ (JC Garden Ville)</h3>
-                <p style="font-size: 14px; color: #64748b;"><b>คำอธิบาย:</b> ระบบบริหารจัดการส่วนกลางหมู่บ้าน ช่วยให้กรรมการจัดการข้อมูลและตรวจสอบรายละเอียดได้สะดวกในระบบเดียว</p>
             </div>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             
-            <p style="font-size: 14px; background: #fffbeb; padding: 10px; border-radius: 8px; border: 1px solid #fef3c7; margin-bottom: 15px;">
-                🛠️ <b>หน้าที่หลัก:</b> พัฒนาโปรแกรมและระบบฐานข้อมูล (Developer)
-            </p>
+            <div class="space-y-6 md:col-span-1">
+                
+                <section class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                    <h2 class="text-xl font-bold text-slate-900 border-b pb-3 mb-4 flex items-center gap-2">
+                        <span class="text-amber-500">⚡</span> ทักษะและความสามารถ
+                    </h2>
+                    
+                    <div class="mb-5">
+                        <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-2">💻 โปรแกรมที่ใช้งานเป็น</h3>
+                        <ul class="space-y-2">
+                            <li class="bg-slate-50 p-2.5 rounded-lg text-sm font-medium flex items-start gap-2">
+                                <span class="text-blue-500">✔</span>
+                                <span>VS Code <span class="text-xs text-slate-500 block font-normal">(โปรแกรมหลักที่ใช้พัฒนา)</span></span>
+                            </li>
+                            <li class="bg-slate-50 p-2.5 rounded-lg text-sm font-medium flex items-center gap-2">
+                                <span class="text-blue-500">✔</span> Web Browser Tools
+                            </li>
+                        </ul>
+                    </div>
 
-            <div style="margin-bottom: 15px;">
-                <p style="font-size: 13px; font-weight: bold; color: #94a3b8;">👥 สมาชิกในกลุ่ม</p>
-                <p style="font-size: 14px;">1. นายชณกฤดิ ช่วงธัญวัฒน์ | 2. นายไกรรัช ท้าวแก้ว | 3. นางสาวธนภร บุญสวัสดิ์</p>
+                    <div>
+                        <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-2">🗣️ ภาษาคอมพิวเตอร์ที่เคยเรียน</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-blue-50 text-blue-700 text-xs font-semibold px-3 py-1.5 rounded-md border border-blue-100">PHP (ภาษาหลัก)</span>
+                            <span class="bg-orange-50 text-orange-700 text-xs font-semibold px-3 py-1.5 rounded-md border border-orange-100">HTML / CSS</span>
+                            <span class="bg-emerald-50 text-emerald-700 text-xs font-semibold px-3 py-1.5 rounded-md border border-emerald-100">SQL (Database)</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                    <h2 class="text-xl font-bold text-slate-900 border-b pb-3 mb-4 flex items-center gap-2">
+                        <span class="text-blue-500">📞</span> ช่องทางการติดต่อ
+                    </h2>
+                    <div class="space-y-3">
+                        <a href="mailto:benben39032@gmail.com" class="w-full flex items-center justify-between p-3 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-700 font-medium transition-all group">
+                            <div class="flex items-center gap-3 truncate">
+                                <span class="text-xl">📧</span>
+                                <div class="truncate text-left">
+                                    <p class="text-xs text-blue-500 font-semibold">Email ของเบน</p>
+                                    <p class="text-sm truncate">benben39032@gmail.com</p>
+                                </div>
+                            </div>
+                            <span class="text-xs bg-blue-600 text-white px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0">กดส่งเมล์</span>
+                        </a>
+
+                        <a href="https://line.me/ti/p/~ben240604" target="_blank" class="w-full flex items-center justify-between p-3 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-medium transition-all group">
+                            <div class="flex items-center gap-3">
+                                <span class="text-xl">💬</span>
+                                <div class="text-left">
+                                    <p class="text-xs text-emerald-500 font-semibold">Line ID</p>
+                                    <p class="text-sm">ben240604</p>
+                                </div>
+                            </div>
+                            <span class="text-xs bg-emerald-600 text-white px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0">กดแอดไลน์</span>
+                        </a>
+                    </div>
+                </section>
+
             </div>
 
-            <div>
-                <p style="font-size: 13px; font-weight: bold; color: #94a3b8;">💻 ภาพหน้าจอระบบ</p>
-                <div class="img-box">📷 ยังไม่ได้ใส่รูปภาพหน้าจอระบบ</div>
+            <div class="md:col-span-2">
+                <section class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-100 h-full">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b pb-4 mb-6">
+                        <h2 class="text-2xl font-bold text-slate-900 flex items-center gap-2">
+                            <span class="text-indigo-500">📂</span> ข้อมูลโปรเจกต์จบ ปวช.3
+                        </h2>
+                        <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-1 rounded dark:bg-indigo-900 dark:text-indigo-300 w-fit">Final Project</span>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="text-xs font-bold uppercase text-slate-400 tracking-wider">ชื่อโปรเจกต์</label>
+                        <h3 class="text-xl font-bold text-indigo-600 mt-1">เว็บไซต์หมู่บ้านเจซีการ์เดนวิลล์ (JC Garden Ville)</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <h4 class="font-semibold text-slate-900 mb-1 flex items-center gap-1.5 text-sm">
+                                <span class="w-2 h-2 rounded-full bg-blue-500"></span> คำอธิบายระบบ
+                            </h4>
+                            <p class="text-slate-600 text-sm leading-relaxed">เป็นเว็บไซต์ระบบบริหารจัดการส่วนกลางหมู่บ้านที่ช่วยให้กรรมการหมู่บ้านสามารถจัดการข้อมูลและตรวจสอบรายละเอียดต่างๆ ได้อย่างสะดวกและรวดเร็วในระบบเดียว</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <h4 class="font-semibold text-slate-900 mb-1 flex items-center gap-1.5 text-sm">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span> เหตุผลที่เลือกทำ
+                            </h4>
+                            <p class="text-slate-600 text-sm leading-relaxed">เพื่อช่วยแก้ปัญหาความยุ่งยากในการบริหารงานของกรรมการหมู่บ้าน ทำให้การจัดการระบบส่วนกลางโปร่งใส ตรวจสอบง่าย และมีประสิทธิภาพมากขึ้น</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-50/60 border border-amber-100 p-4 rounded-xl mb-6">
+                        <h4 class="font-bold text-amber-900 flex items-center gap-2 text-sm">
+                            🛠️ หน้าที่หลักในกลุ่ม (Role)
+                        </h4>
+                        <p class="text-amber-800 text-sm mt-1">
+                            <span class="font-semibold">พนักงานพัฒนาโปรแกรมและระบบฐานข้อมูล (Developer)</span> โดยรับผิดชอบในการเขียนโค้ดระบบด้วยภาษา <span class="font-semibold">PHP</span> และจัดการฐานข้อมูล <span class="font-semibold">SQL</span> บนโปรแกรม <span class="font-semibold">VS Code</span>
+                        </p>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="text-xs font-bold uppercase text-slate-400 tracking-wider block mb-2">👥 สมาชิกในกลุ่มโปรเจกต์</label>
+                        <ol class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-sm text-slate-700">
+                            <li class="bg-slate-50 p-2.5 rounded-lg border border-slate-100 font-medium">1. นายชณกฤดิ ช่วงธัญวัฒน์</li>
+                            <li class="bg-slate-50 p-2.5 rounded-lg border border-slate-100 text-slate-600">2. นายไกรรัช ท้าวแก้ว</li>
+                            <li class="bg-slate-50 p-2.5 rounded-lg border border-slate-100 text-slate-600">3. นางสาวธนภร บุญสวัสดิ์</li>
+                        </ol>
+                    </div>
+
+                    <div>
+                        <label class="text-xs font-bold uppercase text-slate-400 tracking-wider block mb-2">💻 ภาพหน้าจอระบบโปรเจกต์</label>
+                        <div class="bg-slate-100 rounded-xl border-2 border-dashed border-slate-300 p-6 flex flex-col items-center justify-center min-h-[200px]">
+                            <img src="https://via.placeholder.com/600x350" alt="ภาพหน้าจอระบบ" class="w-full h-auto rounded-lg shadow-sm hidden mb-4">
+                            <div class="text-center text-slate-400 mb-4">
+                                <span class="text-3xl block mb-1">💻</span>
+                                <p class="text-xs font-medium">ยังไม่ได้ใส่รูปภาพหน้าจอระบบ</p>
+                            </div>
+                            <button onclick="alert('กำลังพัฒนาระบบตัวอย่าง')" class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-5 py-2.5 rounded-xl shadow-md transition-colors flex items-center gap-2">
+                                🌐 ดูตัวอย่างเว็บไซต์ระบบ (Live Demo)
+                            </button>
+                        </div>
+                    </div>
+
+                </section>
             </div>
-        </section>
+
+        </div>
+
+        <footer class="text-center text-xs text-slate-400 mt-12">
+            <p>© 2026 นายชณกฤดิ ช่วงธัญวัฒน์ - Information Technology Project</p>
+        </footer>
 
     </div>
-
-    <footer style="text-align: center; font-size: 12px; color: #94a3b8; margin-top: 30px;">
-        <p>© 2026 นายชณกฤดิ ช่วงธัญวัฒน์ - IT Project</p>
-    </footer>
-
-</div>
 
 </body>
 </html>
